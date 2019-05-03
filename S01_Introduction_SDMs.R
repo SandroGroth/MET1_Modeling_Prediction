@@ -62,7 +62,7 @@ pred.weight <- data.frame(hw.new$name, weight.pred=hw.lm.p)
 pred.weight
 
 #-------------------------------------------------------------------------
-# EAGLE presence
+# 02. EAGLEs distribution model
 #-------------------------------------------------------------------------
 
 library(rgdal)
@@ -130,7 +130,9 @@ plot(rr.3.d)
 preds <- stack(rr.1.d, rr.2.d, rr.3.d)
 
 # subset data for better time prediction
-occ.10h <- occ(occ$time == 10, newdata = preds)
+occ.10h <- occ[occ$time == 10, ]
+occ.13h <- occ[occ$time == 13, ]
+occ.22h <- occ[occ$time == 22, ]
 
 d.10h <- sdmData(formula = students~layer.1+layer.2+layer.3, train = occ.10h, predictors = pred)
 d.13h <- sdmData(formula = students~layer.1+layer.2+layer.3, train = occ.13h, predictors = pred)
@@ -151,9 +153,3 @@ plot(p.time.1)
 
 plotRGB(p.time, 1,3,5, stretch ="lin")
 plot(bui, add = T)
-# TODO: Finish
-
-
-
-
-
