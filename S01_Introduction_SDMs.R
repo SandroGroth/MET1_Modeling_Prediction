@@ -7,7 +7,7 @@
 #-----------------------------------------------------------------------------------------
 
 # load data
-hw <- read.csv("weight-height.csv")
+hw <- read.csv("data/weight-height.csv")
 head(hw)
 summary(hw)
 
@@ -69,12 +69,12 @@ library(rgdal)
 library(raster)
 
 # read data
-occ <- readOGR("occurence.gpkg")
+occ <- readOGR("data/occurence.gpkg")
 class(occ)
 summary(occ)
 plot(occ)
 
-bui <- readOGR("campus_buildings.gpkg")
+bui <- readOGR("data/campus_buildings.gpkg")
 summary(bui)
 plot(bui)
 
