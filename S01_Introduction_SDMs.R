@@ -98,7 +98,7 @@ d
 
 m1 <- sdm(students~., data = d, methods = c("glm"))
 
-p1 <- predict(m1, newdata = preds, filename = 'sdm_preds_1.grd', overview = T)
+p1 <- predict(m1, newdata = preds, filename = 'sdm_preds_1.grd', overview = T, overwrite = T)
 plot(p1)
 
 # get sdms for each building
@@ -134,9 +134,9 @@ occ.10h <- occ[occ$time == 10, ]
 occ.13h <- occ[occ$time == 13, ]
 occ.22h <- occ[occ$time == 22, ]
 
-d.10h <- sdmData(formula = students~layer.1+layer.2+layer.3, train = occ.10h, predictors = pred)
-d.13h <- sdmData(formula = students~layer.1+layer.2+layer.3, train = occ.13h, predictors = pred)
-d.22h <- sdmData(formula = students~layer.1+layer.2+layer.3, train = occ.22h, predictors = pred)
+d.10h <- sdmData(formula = students~layer.1+layer.2+layer.3, train = occ.10h, predictors = preds)
+d.13h <- sdmData(formula = students~layer.1+layer.2+layer.3, train = occ.13h, predictors = preds)
+d.22h <- sdmData(formula = students~layer.1+layer.2+layer.3, train = occ.22h, predictors = preds)
 
 m.10h <- sdm(students~.,data = d.10h, methods = c("glm"))
 m.13h <- sdm(students~.,data = d.13h, methods = c("glm"))
@@ -149,7 +149,7 @@ p.22h <- predict(m.22h, newdata=preds)
 p.time <- stack(p.10h, p.13h, p.22h)
 
 # plot it as rgb
-plot(p.time.1)
+plot(p.time)
 
 plotRGB(p.time, 1,3,5, stretch ="lin")
 plot(bui, add = T)
